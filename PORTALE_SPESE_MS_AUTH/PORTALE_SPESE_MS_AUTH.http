@@ -1,0 +1,6 @@
+@PORTALE_SPESE_MS_AUTH_HostAddress = http://localhost:5103
+
+GET {{PORTALE_SPESE_MS_AUTH_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
