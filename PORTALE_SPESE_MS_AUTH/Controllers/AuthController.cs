@@ -1,6 +1,7 @@
 ﻿using LoginService.Models;
 using Microsoft.AspNetCore.Mvc;
 using PORTALE_SPESE_MS_AUTH.Classi;
+using PORTALE_SPESE_MS_AUTH.Moduli;
 using System.Net.Http;
 
 namespace PORTALE_SPESE_MS_AUTH.Controllers
@@ -25,13 +26,13 @@ namespace PORTALE_SPESE_MS_AUTH.Controllers
 
             if (!response.IsSuccessStatusCode)
             {
-                return Unauthorized(new { error = "Credenziali non valide" });
+                return Unauthorized(new { ERROR = "CREDENZIALI NON VALIDE" });
             }
 
             var userData = await response.Content.ReadFromJsonAsync<Utente>();
 
             // Simula la creazione di un token JWT
-            var token = $"fake-jwt-token-for-{userData.T001_IdUtente}";
+            var token = GENERA_TOKEN_JTW.GENERA(userData);
 
             return Ok(new { token, userData });
         }
